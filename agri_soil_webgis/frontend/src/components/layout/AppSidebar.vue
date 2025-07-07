@@ -63,6 +63,9 @@ const navigateTo = (path) => {
         <el-menu-item index="/erosion-risk" @click="navigateTo('/erosion-risk')">
           侵蚀风险
         </el-menu-item>
+        <el-menu-item index="/earthwork-calculation" @click="navigateTo('/earthwork-calculation')">
+          填挖方计算
+        </el-menu-item>
       </el-sub-menu>
       
       <el-menu-item index="/data-management" @click="navigateTo('/data-management')">

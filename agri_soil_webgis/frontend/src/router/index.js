@@ -4,6 +4,7 @@ import SoilAnalysis from '../views/SoilAnalysis.vue'
 import CropSuitability from '../views/CropSuitability.vue'
 import ErosionRisk from '../views/ErosionRisk.vue'
 import DataManagement from '../views/DataManagement.vue'
+import EarthworkCalculation from '../views/EarthworkCalculation.vue'
 
 const routes = [
   {
@@ -35,6 +36,11 @@ const routes = [
     path: '/data-management',
     name: 'DataManagement',
     component: DataManagement
+  },
+  {
+    path: '/earthwork-calculation',
+    name: 'EarthworkCalculation',
+    component: EarthworkCalculation
   }
 ]
 
