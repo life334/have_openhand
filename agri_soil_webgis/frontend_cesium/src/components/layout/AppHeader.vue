@@ -15,7 +15,7 @@ const handleToggleSidebar = () => {
         <el-icon><i class="el-icon-menu"></i></el-icon>
       </el-button>
       <div class="logo">
-        <img src="@/assets/logo.png" alt="Logo" class="logo-img" />
+        <img src="@/assets/logo.svg" alt="Logo" class="logo-img" />
         <span class="logo-text">农业土壤 WebGIS 系统</span>
       </div>
     </div>

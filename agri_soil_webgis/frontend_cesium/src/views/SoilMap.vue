@@ -165,12 +165,8 @@ const addSoilEntities = () => {
         outlineWidth: 2,
         heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
       },
-      billboard: {
-        image: '/src/assets/soil-marker.png',
-        width: 32,
-        height: 32,
-        heightReference: Cesium.HeightReference.CLAMP_TO_GROUND
-      },
+      // 使用点代替图片标记
+      // 如果需要图片标记，请先创建图片文件
       label: {
         text: feature.properties[selectedLayer.value].toString(),
         font: '14px sans-serif',
