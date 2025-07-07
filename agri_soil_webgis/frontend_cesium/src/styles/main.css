@@ -1,0 +1,103 @@
+:root {
+  --primary-color: #409eff;
+  --success-color: #67c23a;
+  --warning-color: #e6a23c;
+  --danger-color: #f56c6c;
+  --info-color: #909399;
+  --text-color: #303133;
+  --text-color-secondary: #606266;
+  --border-color: #dcdfe6;
+  --background-color: #f5f7fa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-color);
+}
+
+#app {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.page-container {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.cesium-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.widget-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.widget-panel-left {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.widget-panel-bottom {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
