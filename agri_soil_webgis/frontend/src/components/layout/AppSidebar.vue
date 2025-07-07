@@ -64,7 +64,10 @@ const navigateTo = (path) => {
           侵蚀风险
         </el-menu-item>
         <el-menu-item index="/earthwork-calculation" @click="navigateTo('/earthwork-calculation')">
-          填挖方计算
+          填挖方计算(简单)
+        </el-menu-item>
+        <el-menu-item index="/tin-earthwork-calculation" @click="navigateTo('/tin-earthwork-calculation')">
+          填挖方计算(三角网)
         </el-menu-item>
       </el-sub-menu>
       

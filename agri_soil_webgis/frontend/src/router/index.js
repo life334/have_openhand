@@ -5,6 +5,7 @@ import CropSuitability from '../views/CropSuitability.vue'
 import ErosionRisk from '../views/ErosionRisk.vue'
 import DataManagement from '../views/DataManagement.vue'
 import EarthworkCalculation from '../views/EarthworkCalculation.vue'
+import TINEarthworkCalculation from '../views/TINEarthworkCalculation.vue'
 
 const routes = [
   {
@@ -41,6 +42,11 @@ const routes = [
     path: '/earthwork-calculation',
     name: 'EarthworkCalculation',
     component: EarthworkCalculation
+  },
+  {
+    path: '/tin-earthwork-calculation',
+    name: 'TINEarthworkCalculation',
+    component: TINEarthworkCalculation
   }
 ]
 

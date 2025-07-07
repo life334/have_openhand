@@ -413,7 +413,10 @@ const resetCalculation = () => {
         <el-card class="control-panel">
           <template #header>
             <div class="card-header">
-              <span>填挖方计算工具</span>
+              <span>填挖方计算工具 (简单模式)</span>
+              <el-link type="primary" @click="$router.push('/tin-earthwork-calculation')">
+                切换到三角网模式 <i class="el-icon-right"></i>
+              </el-link>
             </div>
           </template>
           
