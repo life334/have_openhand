@@ -27,7 +27,8 @@ app.use(router)
 app.use(pinia)
 app.use(ElementPlus)
 app.use(VueCesium, {
-  cesiumPath: 'https://unpkg.com/cesium@latest/Build/Cesium/Cesium.js',
+  // 使用本地安装的 Cesium 而不是 CDN
+  cesiumPath: '',
   accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYTIzNTY3ZS01MWJmLTQzYjEtYjE0OS1kODVkMTY2NDRlODIiLCJpZCI6OTYyMCwic2NvcGVzIjpbImFzciIsImdjIl0sImlhdCI6MTU1MzIyODM0OX0.aW0_PLxl0L_UtZXizVSXciJGomjLNpOw8PFXLnXYFYw'
 })
 

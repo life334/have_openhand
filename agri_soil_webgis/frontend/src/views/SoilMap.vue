@@ -1,11 +1,14 @@
 <script setup>
 import { ref, onMounted, reactive } from 'vue';
 import axios from 'axios';
+import * as Cesium from 'cesium';
+import { useVcViewer } from 'vue-cesium';
 
 const isLoading = ref(false);
 const selectedLayer = ref('soil_type');
 const selectedTime = ref('2025');
-const viewerReady = ref(false);
+// 使用 vue-cesium 提供的 useVcViewer 钩子
+const { viewer, viewerRef, load, unload, isReady } = useVcViewer();
 
 const layers = [
   { value: 'soil_type', label: '土壤类型' },
@@ -49,21 +52,26 @@ const cesiumOptions = {
   }
 };
 
-const handleViewerReady = (viewer) => {
-  viewerReady.value = true;
-  console.log('Cesium viewer is ready');
+// 处理 viewer 就绪事件
+const handleViewerReady = (cesiumInstance) => {
+  console.log('Cesium viewer is ready', cesiumInstance);
   
-  // Set default view to China
-  viewer.camera.flyTo({
-    destination: Cesium.Cartesian3.fromDegrees(104.0, 35.0, 10000000),
-    orientation: {
-      heading: Cesium.Math.toRadians(0),
-      pitch: Cesium.Math.toRadians(-90),
-      roll: 0.0
-    }
-  });
+  // 使用 cesiumInstance.viewer 访问 Cesium viewer 实例
+  if (cesiumInstance && cesiumInstance.viewer && cesiumInstance.viewer.camera) {
+    // 设置默认视图到中国
+    cesiumInstance.viewer.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(104.0, 35.0, 10000000),
+      orientation: {
+        heading: Cesium.Math.toRadians(0),
+        pitch: Cesium.Math.toRadians(-90),
+        roll: 0.0
+      }
+    });
+  } else {
+    console.error('Viewer or camera is undefined');
+  }
   
-  // Load soil data
+  // 加载土壤数据
   loadSoilData();
 };
 
@@ -135,7 +143,21 @@ const handleTimeChange = () => {
 };
 
 onMounted(() => {
-  // Initial data load will happen when the Cesium viewer is ready
+  // 监听 viewer 就绪状态
+  if (isReady.value && viewer.value) {
+    // 如果 viewer 已经就绪，直接设置视图
+    viewer.value.camera.flyTo({
+      destination: Cesium.Cartesian3.fromDegrees(104.0, 35.0, 10000000),
+      orientation: {
+        heading: Cesium.Math.toRadians(0),
+        pitch: Cesium.Math.toRadians(-90),
+        roll: 0.0
+      }
+    });
+    
+    // 加载土壤数据
+    loadSoilData();
+  }
 });
 </script>
 
@@ -168,6 +190,7 @@ onMounted(() => {
     
     <div class="map-container">
       <vc-viewer
+        ref="viewerRef"
         :animation="cesiumOptions.animation"
         :base-layer-picker="cesiumOptions.baseLayerPicker"
         :fullscreen-button="cesiumOptions.fullscreenButton"

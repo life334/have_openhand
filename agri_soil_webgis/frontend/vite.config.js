@@ -1,10 +1,15 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
+import cesium from 'vite-plugin-cesium'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    cesium(), // 添加 Cesium 插件
+  ],
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
