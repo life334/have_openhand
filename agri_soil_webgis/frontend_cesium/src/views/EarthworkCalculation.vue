@@ -40,7 +40,10 @@ const initCesium = () => {
   
   // 创建 Cesium 查看器
   viewer.value = new Cesium.Viewer(cesiumContainer.value, {
-    terrainProvider: Cesium.createWorldTerrain(),
+    terrainProvider: Cesium.createWorldTerrainAsync({
+      requestVertexNormals: true,
+      requestWaterMask: true
+    }),
     animation: false,
     baseLayerPicker: true,
     fullscreenButton: true,
@@ -70,19 +73,10 @@ const initCesium = () => {
     }
   });
   
-  // 添加地形图层
-  const terrainProvider = Cesium.createWorldTerrain({
-    requestVertexNormals: true,
-    requestWaterMask: true
-  });
-  viewer.value.terrainProvider = terrainProvider;
+  // 创建屏幕空间事件处理器，用于捕获鼠标移动事件
+  const handler = new Cesium.ScreenSpaceEventHandler(viewer.value.canvas);
   
-  // 添加地形高度读取功能
-  viewer.value.screenSpaceEventHandler.add(
-    new Cesium.ScreenSpaceEventHandler(viewer.value.canvas)
-  );
-  
-  viewer.value.screenSpaceEventHandler.setInputAction((movement) => {
+  handler.setInputAction((movement) => {
     if (!isDrawing.value) return;
     
     const cartesian = viewer.value.scene.pickPosition(movement.endPosition);
@@ -93,8 +87,11 @@ const initCesium = () => {
       const latitude = Cesium.Math.toDegrees(cartographic.latitude);
       
       // 更新状态显示
-      document.getElementById('coordinateInfo').innerText = 
-        `经度: ${longitude.toFixed(6)}, 纬度: ${latitude.toFixed(6)}, 高度: ${height.toFixed(2)}m`;
+      const coordinateInfoElement = document.getElementById('coordinateInfo');
+      if (coordinateInfoElement) {
+        coordinateInfoElement.innerText = 
+          `经度: ${longitude.toFixed(6)}, 纬度: ${latitude.toFixed(6)}, 高度: ${height.toFixed(2)}m`;
+      }
     }
   }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 };

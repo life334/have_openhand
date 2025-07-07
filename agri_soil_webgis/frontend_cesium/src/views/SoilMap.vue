@@ -40,7 +40,10 @@ const initCesium = () => {
   
   // 创建 Cesium 查看器
   viewer.value = new Cesium.Viewer(cesiumContainer.value, {
-    terrainProvider: Cesium.createWorldTerrain(),
+    terrainProvider: Cesium.createWorldTerrainAsync({
+      requestVertexNormals: true,
+      requestWaterMask: true
+    }),
     animation: false,
     baseLayerPicker: true,
     fullscreenButton: true,
@@ -69,13 +72,6 @@ const initCesium = () => {
       roll: 0.0
     }
   });
-  
-  // 添加地形图层
-  const terrainProvider = Cesium.createWorldTerrain({
-    requestVertexNormals: true,
-    requestWaterMask: true
-  });
-  viewer.value.terrainProvider = terrainProvider;
   
   // 加载土壤数据
   loadSoilData();
