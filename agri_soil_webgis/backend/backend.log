@@ -4,3 +4,7 @@ INFO:     Started reloader process [8170] using StatReload
 INFO:     Started server process [8175]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
+INFO:     10.2.46.10:49748 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.97.11:38588 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.46.10:33130 - "GET / HTTP/1.1" 200 OK
+INFO:     10.2.46.10:47192 - "GET / HTTP/1.1" 200 OK
